@@ -5,11 +5,20 @@ const gameBoard = (() => {
 
 const displayController = (() => {
     const boardDiv = document.querySelector('#board');
-    gameBoard.board.forEach((location) => {
+    const addTiles = gameBoard.board.forEach((location) => {
         const boardLocation = document.createElement('div');
         boardLocation.className = 'board-tile';
         boardLocation.setAttribute('data-tile', `${location}`);
         boardDiv.appendChild(boardLocation);
         console.log(location);
     });
+    const playTile = () => {
+        const playedTile = document.querySelector('[data-tile="1"]');
+        const tileSelected = document.createElement('p');
+        tileSelected.classList = 'played-tile';
+        tileSelected.textContent = 'X';
+        playedTile.appendChild(tileSelected);
+    };
+
+    return { addTiles, playTile };
 })();

@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #001220;
 }
 
 #board {
@@ -12,6 +19,15 @@
 .board-tile {
     width: 100%;
     height: 100%;
-    background-color: red;
-    border: 2px solid white;
+    background-color: #0066ff;
+    border: 4px solid #000b13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.played-tile {
+    font-size: 10em;
+    text-align: center;
+    margin: 0;
 }
