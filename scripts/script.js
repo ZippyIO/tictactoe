@@ -10,15 +10,20 @@ const displayController = (() => {
         boardLocation.className = 'board-tile';
         boardLocation.setAttribute('data-tile', `${location}`);
         boardDiv.appendChild(boardLocation);
-        console.log(location);
+        boardLocation.addEventListener('click', () => {
+            console.log(`clicked tile ${location}`);
+            updateTile(location);
+        });
     });
-    const playTile = () => {
-        const playedTile = document.querySelector('[data-tile="1"]');
+    const updateTile = (tile, player) => {
+        const playedTile = document.querySelector(`[data-tile="${tile}"]`);
         const tileSelected = document.createElement('p');
         tileSelected.classList = 'played-tile';
         tileSelected.textContent = 'X';
         playedTile.appendChild(tileSelected);
     };
 
-    return { addTiles, playTile };
+    return { addTiles, updateTile };
 })();
+
+const Player = (id) => {};

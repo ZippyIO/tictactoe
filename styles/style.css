@@ -27,6 +27,7 @@ body {
 }
 
 .played-tile {
+    color: white;
     font-size: 10em;
     text-align: center;
     margin: 0;
