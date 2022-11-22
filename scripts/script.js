@@ -144,9 +144,31 @@ const game = (() => {
             displayController.updateScoreUI();
             game.gameOver = true;
         }
+        nextGame();
     };
 
-    const nextGame = () => {};
+    const nextGame = () => {
+        const nextGameBtn = document.querySelector('#next-game-btn');
+        nextGameBtn.addEventListener(
+            'click',
+            () => {
+                displayController.removeTiles();
+            },
+            { once: true },
+        );
+    };
+
+    const restartGame = () => {
+        const restartGameBtn = document.querySelector('#restart-btn');
+        restartGameBtn.addEventListener('click', () => {
+            game.gameOver = true;
+            game.playerOneScore = 0;
+            game.playerTwoScore = 0;
+            displayController.removeTiles();
+            displayController.updateScoreUI();
+        });
+    };
+    restartGame();
 
     return { playerOneScore, playerTwoScore, gameOver, checkWin };
 })();
