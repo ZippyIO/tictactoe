@@ -36,22 +36,33 @@ const displayController = (() => {
             game.checkWin(gameBoard.board);
         } else if (game.gameOver) {
             boardDiv.removeEventListener('click', () => {
-                disableTiles();
+                updateTile();
             });
         }
     };
 
-    const disableTiles = () => {};
+    const changePlayerUI = () => {
+        if (event.key == 1 || event.key == 2) {
+            game.playerID = parseInt(event.key);
+            if (game.playerID == 1) {
+                playerOnePara.classList.add('current-player');
+                playerTwoPara.classList.remove('current-player');
+            } else if (game.playerID == 2) {
+                playerTwoPara.classList.add('current-player');
+                playerOnePara.classList.remove('current-player');
+            }
+        }
+    };
 
-    return { addTiles, updateTile };
+    return { addTiles, updateTile, changePlayerUI };
 })();
 
 const Player = () => {
     const changePlayer = () => {
+        playerOnePara = document.querySelector('.player-one');
+        playerTwoPara = document.querySelector('.player-two');
         addEventListener('keydown', (event) => {
-            if (event.key == 1 || event.key == 2) {
-                game.playerID = parseInt(event.key);
-            }
+            displayController.changePlayerUI();
         });
     };
 

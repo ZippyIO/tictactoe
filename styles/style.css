@@ -9,6 +9,48 @@ body {
     background-color: #001220;
 }
 
+#stats {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(2, 50px);
+    justify-content: center;
+}
+
+#stats > * {
+    width: 100%;
+    height: 100%;
+    border: 4px solid #000b13;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.player-one {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    margin: 0;
+}
+
+.player-two {
+    grid-column: 3 / 4;
+    grid-row: 1 / 3;
+    margin: 0;
+}
+
+.current-player {
+    background-color: red;
+}
+
+.game-stats {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+#restart-btn {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
 #board {
     display: grid;
     grid-template-columns: repeat(3, 200px);
