@@ -159,16 +159,12 @@ const game = (() => {
 
     const nextGame = () => {
         const nextGameBtn = document.querySelector('#next-game-btn');
-        nextGameBtn.addEventListener(
-            'click',
-            () => {
-                game.gameOver = true;
-                displayController.removeTiles();
-                player.playerID = 1;
-                displayController.updatePlayerUI();
-            },
-            { once: true },
-        );
+        nextGameBtn.addEventListener('click', () => {
+            game.gameOver = true;
+            displayController.removeTiles();
+            player.playerID = 1;
+            displayController.updatePlayerUI();
+        });
     };
     nextGame();
 
