@@ -33,10 +33,14 @@ const displayController = (() => {
                 tileSelected.textContent = 'X';
                 playedTile.setAttribute('data-tile', 'X');
                 gameBoard.board.splice(tile - 1, 1, 'X');
+                player.playerID = 2;
+                updatePlayerUI();
             } else if (player.playerID == 2) {
                 tileSelected.textContent = 'O';
                 playedTile.setAttribute('data-tile', 'O');
                 gameBoard.board.splice(tile - 1, 1, 'O');
+                player.playerID = 1;
+                updatePlayerUI();
             }
             playedTile.appendChild(tileSelected);
             game.checkWin(gameBoard.board);
@@ -58,18 +62,15 @@ const displayController = (() => {
         }
     };
 
-    const updatePlayerUI = (e) => {
+    const updatePlayerUI = () => {
         playerOnePara = document.querySelector('.player-one');
         playerTwoPara = document.querySelector('.player-two');
-        if (e.key == 1 || e.key == 2) {
-            player.playerID = parseInt(e.key);
-            if (player.playerID == 1) {
-                playerOnePara.classList.add('current-player');
-                playerTwoPara.classList.remove('current-player');
-            } else if (player.playerID == 2) {
-                playerTwoPara.classList.add('current-player');
-                playerOnePara.classList.remove('current-player');
-            }
+        if (player.playerID == 1) {
+            playerOnePara.classList.add('current-player');
+            playerTwoPara.classList.remove('current-player');
+        } else if (player.playerID == 2) {
+            playerTwoPara.classList.add('current-player');
+            playerOnePara.classList.remove('current-player');
         }
     };
 
@@ -83,11 +84,7 @@ const displayController = (() => {
 
 const player = (() => {
     let playerID;
-    const changePlayer = () => {
-        addEventListener('keydown', (event) => {
-            displayController.updatePlayerUI(event);
-        });
-    };
+    const changePlayer = () => {};
 
     return { playerID, changePlayer };
 })();
@@ -144,7 +141,20 @@ const game = (() => {
             displayController.updateScoreUI();
             game.gameOver = true;
         }
+        announceWinner(winner);
         nextGame();
+    };
+
+    const announceWinner = (winner) => {
+        const winnerDiv = document.querySelector('.winner');
+        const winnerPara = document.createElement('p');
+        if (winner == 'X') {
+            winnerPara.textContent = 'Player X Wins!';
+            winnerDiv.appendChild(winnerPara);
+        } else if (winner == 'O') {
+            winnerPara.textContent = 'Player O Wins!';
+            winnerDiv.appendChild(winnerPara);
+        }
     };
 
     const nextGame = () => {
@@ -152,11 +162,15 @@ const game = (() => {
         nextGameBtn.addEventListener(
             'click',
             () => {
+                game.gameOver = true;
                 displayController.removeTiles();
+                player.playerID = 1;
+                displayController.updatePlayerUI();
             },
             { once: true },
         );
     };
+    nextGame();
 
     const restartGame = () => {
         const restartGameBtn = document.querySelector('#restart-btn');

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
 
 * {
     box-sizing: border-box;
@@ -92,6 +93,12 @@ body {
 .played-tile {
     color: white;
     font-size: 10em;
+    font-family: 'Permanent Marker', cursive;
     text-align: center;
     margin: 0;
+}
+
+.winner {
+    grid-column: 1 / 4;
+    grid-row: 4 / 5;
 }
